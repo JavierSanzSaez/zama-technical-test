@@ -1,6 +1,5 @@
 import React from 'react';
 import type { InputHTMLAttributes } from 'react';
-import { colors, spacing, borderRadius, typography } from '../styles/tokens';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -12,53 +11,54 @@ export const Input: React.FC<InputProps> = ({
   label,
   error,
   fullWidth = false,
+  className = '',
   ...props
 }) => {
-  const containerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing[2],
-    width: fullWidth ? '100%' : 'auto',
-  };
+  const containerClasses = [
+    'flex',
+    'flex-col',
+    'gap-2',
+    fullWidth ? 'w-full' : 'w-auto',
+  ].join(' ');
 
-  const labelStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.sm,
-    fontWeight: typography.fontWeight.medium,
-    color: colors.neutral[700],
-  };
+  const labelClasses = [
+    'text-sm',
+    'font-medium',
+    'text-gray-700',
+  ].join(' ');
 
-  const inputStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.base,
-    padding: `${spacing[3]} ${spacing[4]}`,
-    border: `1px solid ${error ? colors.error.DEFAULT : colors.neutral[300]}`,
-    borderRadius: borderRadius.md,
-    outline: 'none',
-    transition: 'border-color 200ms ease-in-out',
-    width: '100%',
-  };
+  const inputClasses = [
+    'w-full',
+    'text-base',
+    'px-4',
+    'py-3',
+    'border',
+    'rounded-md',
+    'outline-none',
+    'transition-colors',
+    'duration-200',
+    'focus:ring-2',
+    'focus:ring-offset-2',
+    error
+      ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500',
+    className,
+  ]
+    .join(' ');
 
-  const errorStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.sm,
-    color: colors.error.DEFAULT,
-  };
+  const errorClasses = [
+    'text-sm',
+    'text-red-600',
+  ].join(' ');
 
   return (
-    <div style={containerStyle}>
-      {label && <label style={labelStyle}>{label}</label>}
+    <div className={containerClasses}>
+      {label && <label className={labelClasses}>{label}</label>}
       <input
-        style={inputStyle}
-        onFocus={(e) => {
-          e.currentTarget.style.borderColor = error ? colors.error.DEFAULT : colors.primary[500];
-        }}
-        onBlur={(e) => {
-          e.currentTarget.style.borderColor = error ? colors.error.DEFAULT : colors.neutral[300];
-        }}
+        className={inputClasses}
         {...props}
       />
-      {error && <span style={errorStyle}>{error}</span>}
+      {error && <span className={errorClasses}>{error}</span>}
     </div>
   );
 };

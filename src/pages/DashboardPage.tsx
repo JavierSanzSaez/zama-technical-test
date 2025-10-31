@@ -3,74 +3,25 @@ import { Link } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { useAuth } from '../contexts/useAuth';
-import { colors, spacing, typography } from '../styles/tokens';
 
 export const DashboardPage: React.FC = () => {
   const { user } = useAuth();
 
-  const titleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize['3xl'],
-    fontWeight: typography.fontWeight.bold,
-    color: colors.neutral[900],
-    marginBottom: spacing[2],
-  };
-
-  const subtitleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.lg,
-    color: colors.neutral[600],
-    marginBottom: spacing[8],
-  };
-
-  const gridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: spacing[6],
-    marginBottom: spacing[8],
-  };
-
-  const cardTitleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.xl,
-    fontWeight: typography.fontWeight.semibold,
-    color: colors.neutral[900],
-    marginBottom: spacing[3],
-  };
-
-  const cardDescStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.base,
-    color: colors.neutral[600],
-    marginBottom: spacing[4],
-    lineHeight: typography.lineHeight.relaxed,
-  };
-
-  const statStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize['2xl'],
-    fontWeight: typography.fontWeight.bold,
-    color: colors.primary[600],
-  };
-
-  const statLabelStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.sm,
-    color: colors.neutral[500],
-    marginTop: spacing[1],
-  };
-
   return (
     <div>
-      <h1 style={titleStyle}>Welcome back, {user?.name}!</h1>
-      <p style={subtitleStyle}>
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        Welcome back, {user?.name}!
+      </h1>
+      <p className="text-lg text-gray-600 mb-8">
         Manage your API keys and monitor your usage from this dashboard.
       </p>
 
-      <div style={gridStyle}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Card hover>
-          <div style={cardTitleStyle}>API Keys</div>
-          <div style={cardDescStyle}>
+          <div className="text-xl font-semibold text-gray-900 mb-3">
+            API Keys
+          </div>
+          <div className="text-base text-gray-600 mb-4 leading-relaxed">
             Create, manage, and regenerate your API keys securely.
           </div>
           <Link to="/api-keys">
@@ -79,8 +30,10 @@ export const DashboardPage: React.FC = () => {
         </Card>
 
         <Card hover>
-          <div style={cardTitleStyle}>Usage Metrics</div>
-          <div style={cardDescStyle}>
+          <div className="text-xl font-semibold text-gray-900 mb-3">
+            Usage Metrics
+          </div>
+          <div className="text-base text-gray-600 mb-4 leading-relaxed">
             View your API usage statistics and request counts.
           </div>
           <Link to="/usage">
@@ -89,8 +42,10 @@ export const DashboardPage: React.FC = () => {
         </Card>
 
         <Card hover>
-          <div style={cardTitleStyle}>Documentation</div>
-          <div style={cardDescStyle}>
+          <div className="text-xl font-semibold text-gray-900 mb-3">
+            Documentation
+          </div>
+          <div className="text-base text-gray-600 mb-4 leading-relaxed">
             Learn how to integrate our API into your applications.
           </div>
           <Link to="/docs">
@@ -99,20 +54,20 @@ export const DashboardPage: React.FC = () => {
         </Card>
       </div>
 
-      <div style={gridStyle}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
-          <div style={statStyle}>0</div>
-          <div style={statLabelStyle}>Active API Keys</div>
+          <div className="text-2xl font-bold text-blue-600">0</div>
+          <div className="text-sm text-gray-500 mt-1">Active API Keys</div>
         </Card>
 
         <Card>
-          <div style={statStyle}>0</div>
-          <div style={statLabelStyle}>API Requests Today</div>
+          <div className="text-2xl font-bold text-blue-600">0</div>
+          <div className="text-sm text-gray-500 mt-1">API Requests Today</div>
         </Card>
 
         <Card>
-          <div style={statStyle}>0</div>
-          <div style={statLabelStyle}>Total Requests</div>
+          <div className="text-2xl font-bold text-blue-600">0</div>
+          <div className="text-sm text-gray-500 mt-1">Total Requests</div>
         </Card>
       </div>
     </div>

@@ -11,7 +11,6 @@ import {
   type APIKey,
 } from '../api/apiKeys';
 import { copyToClipboard, maskAPIKey, formatDate } from '../utils/helpers';
-import { colors, spacing, typography, borderRadius } from '../styles/tokens';
 
 export const APIKeysPage: React.FC = () => {
   const [apiKeys, setApiKeys] = useState<APIKey[]>([]);
@@ -87,114 +86,21 @@ export const APIKeysPage: React.FC = () => {
     }
   };
 
-  const titleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize['3xl'],
-    fontWeight: typography.fontWeight.bold,
-    color: colors.neutral[900],
-    marginBottom: spacing[2],
-  };
-
-  const subtitleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.lg,
-    color: colors.neutral[600],
-    marginBottom: spacing[6],
-  };
-
-  const headerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: spacing[6],
-  };
-
-  const keyListStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing[4],
-  };
-
-  const keyItemStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing[3],
-  };
-
-  const keyHeaderStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  };
-
-  const keyNameStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.lg,
-    fontWeight: typography.fontWeight.semibold,
-    color: colors.neutral[900],
-  };
-
-  const keyValueContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: spacing[2],
-    padding: spacing[3],
-    backgroundColor: colors.neutral[50],
-    borderRadius: borderRadius.md,
-    border: `1px solid ${colors.neutral[200]}`,
-  };
-
-  const keyValueStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.mono,
-    fontSize: typography.fontSize.sm,
-    color: colors.neutral[700],
-    flex: 1,
-    overflowX: 'auto',
-  };
-
-  const keyMetaStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.sm,
-    color: colors.neutral[500],
-  };
-
-  const statusBadgeStyle = (status: string): React.CSSProperties => ({
-    display: 'inline-block',
-    padding: `${spacing[1]} ${spacing[3]}`,
-    borderRadius: borderRadius.full,
-    fontSize: typography.fontSize.xs,
-    fontWeight: typography.fontWeight.medium,
-    backgroundColor: status === 'active' ? colors.success.light : colors.neutral[200],
-    color: status === 'active' ? colors.success.dark : colors.neutral[600],
-  });
-
-  const actionsStyle: React.CSSProperties = {
-    display: 'flex',
-    gap: spacing[2],
-    flexWrap: 'wrap',
-  };
-
-  const formStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing[4],
-  };
-
-  const emptyStateStyle: React.CSSProperties = {
-    textAlign: 'center',
-    padding: spacing[12],
-    color: colors.neutral[500],
-    fontFamily: typography.fontFamily.sans,
+  const getStatusBadgeClasses = (status: string) => {
+    const baseClasses = "inline-block px-3 py-1 rounded-full text-xs font-medium";
+    return status === 'active' 
+      ? `${baseClasses} bg-green-100 text-green-800`
+      : `${baseClasses} bg-gray-200 text-gray-600`;
   };
 
   return (
     <div>
-      <h1 style={titleStyle}>API Keys</h1>
-      <p style={subtitleStyle}>
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">API Keys</h1>
+      <p className="text-lg text-gray-600 mb-6">
         Manage your API keys for authenticating requests to the API.
       </p>
 
-      <div style={headerStyle}>
+      <div className="flex justify-between items-center mb-6">
         <div></div>
         <Button onClick={() => setShowCreateForm(!showCreateForm)}>
           {showCreateForm ? 'Cancel' : 'Create New Key'}
@@ -203,7 +109,7 @@ export const APIKeysPage: React.FC = () => {
 
       {showCreateForm && (
         <Card padding="6">
-          <form style={formStyle} onSubmit={(e) => { e.preventDefault(); handleCreate(); }}>
+          <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); handleCreate(); }}>
             <Input
               label="Key Name"
               placeholder="e.g., Production API Key"
@@ -220,27 +126,27 @@ export const APIKeysPage: React.FC = () => {
 
       {apiKeys.length === 0 ? (
         <Card>
-          <div style={emptyStateStyle}>
+          <div className="text-center py-12 text-gray-500">
             <p>No API keys yet. Create your first one to get started!</p>
           </div>
         </Card>
       ) : (
-        <div style={keyListStyle}>
+        <div className="flex flex-col gap-4">
           {apiKeys.map((key) => (
             <Card key={key.id}>
-              <div style={keyItemStyle}>
-                <div style={keyHeaderStyle}>
+              <div className="flex flex-col gap-3">
+                <div className="flex justify-between items-start">
                   <div>
-                    <div style={keyNameStyle}>{key.name}</div>
-                    <div style={keyMetaStyle}>
+                    <div className="text-lg font-semibold text-gray-900">{key.name}</div>
+                    <div className="text-sm text-gray-500">
                       Created: {formatDate(key.createdAt)}
                     </div>
                   </div>
-                  <span style={statusBadgeStyle(key.status)}>{key.status}</span>
+                  <span className={getStatusBadgeClasses(key.status)}>{key.status}</span>
                 </div>
 
-                <div style={keyValueContainerStyle}>
-                  <code style={keyValueStyle}>
+                <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-md border border-gray-200">
+                  <code className="font-mono text-sm text-gray-700 flex-1 overflow-x-auto">
                     {revealedKey === key.id ? key.key : maskAPIKey(key.key)}
                   </code>
                   <Button
@@ -261,7 +167,7 @@ export const APIKeysPage: React.FC = () => {
                   )}
                 </div>
 
-                <div style={actionsStyle}>
+                <div className="flex gap-2 flex-wrap">
                   {key.status === 'active' && (
                     <>
                       <Button

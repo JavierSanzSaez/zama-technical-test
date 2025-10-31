@@ -4,7 +4,6 @@ import { useAuth } from '../contexts/useAuth';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Card } from '../components/Card';
-import { colors, spacing, typography } from '../styles/tokens';
 
 export const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -29,61 +28,18 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const containerStyle: React.CSSProperties = {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.neutral[50],
-    padding: spacing[6],
-  };
-
-  const contentStyle: React.CSSProperties = {
-    width: '100%',
-    maxWidth: '400px',
-  };
-
-  const titleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize['3xl'],
-    fontWeight: typography.fontWeight.bold,
-    color: colors.primary[600],
-    textAlign: 'center',
-    marginBottom: spacing[2],
-  };
-
-  const subtitleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.base,
-    color: colors.neutral[600],
-    textAlign: 'center',
-    marginBottom: spacing[8],
-  };
-
-  const formStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing[4],
-  };
-
-  const errorStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.sm,
-    color: colors.error.DEFAULT,
-    textAlign: 'center',
-    padding: spacing[3],
-    backgroundColor: colors.error.light,
-    borderRadius: '4px',
-  };
-
   return (
-    <div style={containerStyle}>
-      <div style={contentStyle}>
-        <h1 style={titleStyle}>Sandbox Console</h1>
-        <p style={subtitleStyle}>Sign in to manage your API keys</p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
+      <div className="w-full max-w-md">
+        <h1 className="text-3xl font-bold text-blue-600 text-center mb-2">
+          Sandbox Console
+        </h1>
+        <p className="text-base text-gray-600 text-center mb-8">
+          Sign in to manage your API keys
+        </p>
         
         <Card>
-          <form style={formStyle} onSubmit={handleSubmit}>
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <Input
               type="email"
               label="Email"
@@ -102,7 +58,11 @@ export const LoginPage: React.FC = () => {
               required
               fullWidth
             />
-            {error && <div style={errorStyle}>{error}</div>}
+            {error && (
+              <div className="text-sm text-red-600 text-center p-3 bg-red-50 rounded">
+                {error}
+              </div>
+            )}
             <Button type="submit" fullWidth disabled={loading}>
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>

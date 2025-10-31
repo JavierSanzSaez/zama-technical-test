@@ -1,80 +1,7 @@
 import React from 'react';
 import { Card } from '../components/Card';
-import { colors, spacing, typography } from '../styles/tokens';
 
 export const UsagePage: React.FC = () => {
-  const titleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize['3xl'],
-    fontWeight: typography.fontWeight.bold,
-    color: colors.neutral[900],
-    marginBottom: spacing[2],
-  };
-
-  const subtitleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.lg,
-    color: colors.neutral[600],
-    marginBottom: spacing[8],
-  };
-
-  const gridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: spacing[6],
-    marginBottom: spacing[8],
-  };
-
-  const statCardStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing[2],
-  };
-
-  const statValueStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize['3xl'],
-    fontWeight: typography.fontWeight.bold,
-    color: colors.primary[600],
-  };
-
-  const statLabelStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.base,
-    color: colors.neutral[600],
-  };
-
-  const tableStyle: React.CSSProperties = {
-    width: '100%',
-    borderCollapse: 'collapse',
-  };
-
-  const thStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.sm,
-    fontWeight: typography.fontWeight.semibold,
-    color: colors.neutral[700],
-    textAlign: 'left',
-    padding: spacing[3],
-    borderBottom: `2px solid ${colors.neutral[200]}`,
-  };
-
-  const tdStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.sm,
-    color: colors.neutral[600],
-    padding: spacing[3],
-    borderBottom: `1px solid ${colors.neutral[200]}`,
-  };
-
-  const sectionTitleStyle: React.CSSProperties = {
-    fontFamily: typography.fontFamily.sans,
-    fontSize: typography.fontSize.xl,
-    fontWeight: typography.fontWeight.semibold,
-    color: colors.neutral[900],
-    marginBottom: spacing[4],
-  };
-
   // Generate dynamic dates for the last 5 days
   const today = new Date();
   const mockData = Array.from({ length: 5 }, (_, i) => {
@@ -94,63 +21,65 @@ export const UsagePage: React.FC = () => {
 
   return (
     <div>
-      <h1 style={titleStyle}>Usage Metrics</h1>
-      <p style={subtitleStyle}>
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Usage Metrics</h1>
+      <p className="text-lg text-gray-600 mb-8">
         Monitor your API usage, request counts, and performance metrics.
       </p>
 
-      <div style={gridStyle}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
-          <div style={statCardStyle}>
-            <div style={statValueStyle}>0</div>
-            <div style={statLabelStyle}>Requests Today</div>
+          <div className="flex flex-col gap-2">
+            <div className="text-3xl font-bold text-blue-600">0</div>
+            <div className="text-base text-gray-600">Requests Today</div>
           </div>
         </Card>
 
         <Card>
-          <div style={statCardStyle}>
-            <div style={statValueStyle}>0</div>
-            <div style={statLabelStyle}>Requests This Month</div>
+          <div className="flex flex-col gap-2">
+            <div className="text-3xl font-bold text-blue-600">0</div>
+            <div className="text-base text-gray-600">Requests This Month</div>
           </div>
         </Card>
 
         <Card>
-          <div style={statCardStyle}>
-            <div style={statValueStyle}>0</div>
-            <div style={statLabelStyle}>Total Requests</div>
+          <div className="flex flex-col gap-2">
+            <div className="text-3xl font-bold text-blue-600">0</div>
+            <div className="text-base text-gray-600">Total Requests</div>
           </div>
         </Card>
 
         <Card>
-          <div style={statCardStyle}>
-            <div style={statValueStyle}>-</div>
-            <div style={statLabelStyle}>Avg. Response Time</div>
+          <div className="flex flex-col gap-2">
+            <div className="text-3xl font-bold text-blue-600">-</div>
+            <div className="text-base text-gray-600">Avg. Response Time</div>
           </div>
         </Card>
       </div>
 
-      <div style={sectionTitleStyle}>Recent Activity</div>
+      <div className="text-xl font-semibold text-gray-900 mb-4">Recent Activity</div>
       <Card>
-        <table style={tableStyle}>
-          <thead>
-            <tr>
-              <th style={thStyle}>Date</th>
-              <th style={thStyle}>Requests</th>
-              <th style={thStyle}>Errors</th>
-              <th style={thStyle}>Avg. Latency</th>
-            </tr>
-          </thead>
-          <tbody>
-            {mockData.map((row, index) => (
-              <tr key={index}>
-                <td style={tdStyle}>{row.date}</td>
-                <td style={tdStyle}>{row.requests}</td>
-                <td style={tdStyle}>{row.errors}</td>
-                <td style={tdStyle}>{row.avgLatency}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b-2 border-gray-200">
+                <th className="text-sm font-semibold text-gray-700 text-left p-3">Date</th>
+                <th className="text-sm font-semibold text-gray-700 text-left p-3">Requests</th>
+                <th className="text-sm font-semibold text-gray-700 text-left p-3">Errors</th>
+                <th className="text-sm font-semibold text-gray-700 text-left p-3">Avg. Latency</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {mockData.map((row, index) => (
+                <tr key={index} className="border-b border-gray-200">
+                  <td className="text-sm text-gray-600 p-3">{row.date}</td>
+                  <td className="text-sm text-gray-600 p-3">{row.requests}</td>
+                  <td className="text-sm text-gray-600 p-3">{row.errors}</td>
+                  <td className="text-sm text-gray-600 p-3">{row.avgLatency}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Card>
     </div>
   );
