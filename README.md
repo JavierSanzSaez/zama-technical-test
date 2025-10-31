@@ -81,6 +81,7 @@ In order to ensure a good level of maintainability and consistency, I have creat
 Quite a few things!:
 - Definitely I would add internationalization with i18n. 
 - A small backend to avoid having a raw JSON file on the front-end repo and instead generate it from scratch with each call to the dummy endpoint
+- In the Usage page, a button to allow the user to download all of its usage data.
 
 
 ### AI Coding assistance

@@ -201,6 +201,33 @@ export const DATA_CONSTANTS = {
   },
 } as const;
 
+// Filter Constants
+export const FILTER_OPTIONS = {
+  timePeriods: {
+    oneDay: {
+      label: '1 Day',
+      value: 'oneDay',
+      days: 1,
+      description: 'Last 24 hours',
+    },
+    oneWeek: {
+      label: '1 Week',
+      value: 'oneWeek', 
+      days: 7,
+      description: 'Last 7 days',
+    },
+    thirtyDays: {
+      label: '30 Days',
+      value: 'thirtyDays',
+      days: 30,
+      description: 'Last 30 days',
+    },
+  },
+  
+  // Default filter selection
+  defaultPeriod: 'thirtyDays',
+} as const;
+
 // Error Messages
 export const ERROR_MESSAGES = {
   network: 'Network error. Please check your connection.',
@@ -228,6 +255,7 @@ export const CONSTANTS = {
   APP_SETTINGS,
   PAGE_TITLES,
   DATA_CONSTANTS,
+  FILTER_OPTIONS,
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } as const;
