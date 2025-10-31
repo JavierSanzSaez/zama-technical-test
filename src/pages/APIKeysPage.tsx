@@ -23,6 +23,7 @@ export const APIKeysPage: React.FC = () => {
   const [creatingKey, setCreatingKey] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [revealedKey, setRevealedKey] = useState<string | null>(null);
+  const [newlyCreatedKey, setNewlyCreatedKey] = useState<string | null>(null);
 
   useEffect(() => {
     loadKeys();
@@ -43,6 +44,12 @@ export const APIKeysPage: React.FC = () => {
       setNewKeyName('');
       setShowCreateForm(false);
       setRevealedKey(newKey.id);
+      setNewlyCreatedKey(newKey.id);
+      
+      // Auto-hide the newly created key warning after 30 seconds
+      setTimeout(() => {
+        setNewlyCreatedKey(null);
+      }, 30000);
     } catch (error) {
       console.error('Failed to create API key:', error);
     } finally {
@@ -113,6 +120,26 @@ export const APIKeysPage: React.FC = () => {
 
       {showCreateForm && (
         <Card padding="6">
+          <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <svg className="w-5 h-5 text-yellow-600 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-yellow-800">
+                  Important Security Notice
+                </h3>
+                <div className="mt-2 text-sm text-yellow-700">
+                  <p>
+                    You can only view and copy your API key <strong>once</strong> immediately after creation. 
+                    After that, the key will be permanently hidden for security reasons. Make sure to copy and store it securely!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); handleCreate(); }}>
             <Input
               label="Key Name"
@@ -149,24 +176,65 @@ export const APIKeysPage: React.FC = () => {
                   <span className={getStatusBadgeClasses(key.status)}>{key.status}</span>
                 </div>
 
-                <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-md border border-gray-200">
-                  <code className="font-mono text-sm text-gray-700 flex-1 overflow-x-auto">
+                {revealedKey === key.id && (
+                  <div className={`mb-3 p-4 rounded-lg border-2 ${
+                    newlyCreatedKey === key.id 
+                      ? 'bg-blue-50 border-blue-300' 
+                      : 'bg-red-50 border-red-200'
+                  }`}>
+                    <div className="flex items-start">
+                      <div>
+                        {newlyCreatedKey === key.id ? (
+                          <div>
+                            <h4 className="text-sm font-bold text-blue-800 mb-1">
+                              🎉 API Key Created Successfully!
+                            </h4>
+                            <p className="text-sm text-blue-700">
+                              <strong>This is your only chance to copy this key!</strong> For security reasons, 
+                              it will be permanently hidden once you close this view. Make sure to copy and store it safely.
+                            </p>
+                          </div>
+                        ) : (
+                          <span className="text-sm font-medium text-red-800">
+                            Last chance to copy! This key will be hidden permanently after you close this view.
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className={`flex items-center gap-2 p-3 rounded-md border ${
+                  revealedKey === key.id 
+                    ? 'bg-green-50 border-green-200' 
+                    : 'bg-gray-50 border-gray-200'
+                }`}>
+                  <code className={`font-mono text-sm flex-1 overflow-x-auto ${
+                    revealedKey === key.id 
+                      ? 'text-green-800' 
+                      : 'text-gray-700'
+                  }`}>
                     {revealedKey === key.id ? key.key : maskAPIKey(key.key)}
                   </code>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => handleCopy(key.key, key.id)}
-                  >
-                    {copiedId === key.id ? 'Copied!' : 'Copy'}
-                  </Button>
                   {revealedKey === key.id && (
                     <Button
                       size="sm"
-                      variant="ghost"
-                      onClick={() => setRevealedKey(null)}
+                      variant="primary"
+                      onClick={() => handleCopy(key.key, key.id)}
                     >
-                      Hide
+                      {copiedId === key.id ? 'Copied!' : 'Copy Now!'}
+                    </Button>
+                  )}
+                  {revealedKey === key.id && (
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      onClick={() => {
+                        setRevealedKey(null);
+                        setNewlyCreatedKey(null);
+                      }}
+                    >
+                      {newlyCreatedKey === key.id ? 'Hide Forever ⚠️' : 'Hide'}
                     </Button>
                   )}
                 </div>

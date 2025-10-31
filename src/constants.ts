@@ -154,14 +154,6 @@ export const APP_SETTINGS = {
     dateFormat: "MM/DD/YYYY",
     timezone: "UTC",
   },
-
-  // Feature flags
-  features: {
-    enableDarkMode: false,
-    enableNotifications: true,
-    enableAnalytics: true,
-    enableExport: true,
-  },
 } as const;
 
 // Development Configuration
