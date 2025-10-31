@@ -75,6 +75,8 @@ export default defineConfig([
 ## Architectural choices
 In order to ensure a good level of maintainability and consistency, I have created a `constants.ts` file where I have stored all those values that are frequently queries and whose data is not likely to change from one feature implementation to the next one. Values such as primary colours and error messages are stored in that file.
 
+### Feature flag and how to show it
+
 
 ## Reflections
 ### If I had more time, what would I extend or improve?

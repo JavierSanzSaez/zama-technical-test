@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/useAuth';
 import { Button } from './Button';
+import { DevToolbar } from './DevToolbar';
 
 export const Layout: React.FC = () => {
   const { user, logout } = useAuth();
@@ -59,6 +60,9 @@ export const Layout: React.FC = () => {
       <main className="flex-1 max-w-6xl mx-auto py-8 px-6 w-full">
         <Outlet />
       </main>
+      
+      {/* Dev Toolbar - only shows if DEBUG_MODE is true */}
+      <DevToolbar />
     </div>
   );
 };

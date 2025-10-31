@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { MiniChart } from '../components/MiniChart';
+import { HalloweenBanner } from '../components/HalloweenBanner';
 import { useAuth } from '../contexts/useAuth';
 import { mockUsageData, mockHourlyData, mockSummaryStats } from '../data/mockUsageData';
 import { COLORS, CHART_CONFIG } from '../constants';
 import { usePageTitle } from '../hooks/useDocumentTitle';
+import { useAppSelector } from '../store/hooks';
+import { selectIsFeatureEnabled } from '../store/featureFlagsSlice';
 
 export const DashboardPage: React.FC = () => {
   const { user } = useAuth();
+  const isHalloweenBannerEnabled = useAppSelector(selectIsFeatureEnabled('showHalloweenBanner'));
   
   // Set the page title
   usePageTitle('dashboard');
@@ -26,6 +30,11 @@ export const DashboardPage: React.FC = () => {
       <p className="text-lg text-gray-600 mb-8">
         Manage your API keys and monitor your usage from this dashboard.
       </p>
+
+      {/* Halloween Banner - conditional rendering based on feature flag */}
+      {isHalloweenBannerEnabled && (
+        <HalloweenBanner />
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Card hover>
