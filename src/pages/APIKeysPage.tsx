@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
+import { usePageTitle } from '../hooks/useDocumentTitle';
 import {
   getAPIKeys,
   createAPIKey,
@@ -13,6 +14,9 @@ import {
 import { copyToClipboard, maskAPIKey, formatDate } from '../utils/helpers';
 
 export const APIKeysPage: React.FC = () => {
+  // Set the page title
+  usePageTitle('apiKeys');
+  
   const [apiKeys, setApiKeys] = useState<APIKey[]>([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newKeyName, setNewKeyName] = useState('');

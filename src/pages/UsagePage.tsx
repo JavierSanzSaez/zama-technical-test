@@ -11,8 +11,13 @@ import {
   endpointUsage
 } from '../data/mockUsageData';
 import { formatNumber } from '../utils/chartUtils';
+import { COLORS } from '../constants';
+import { usePageTitle } from '../hooks/useDocumentTitle';
 
 export const UsagePage: React.FC = () => {
+  // Set the page title
+  usePageTitle('usage');
+  
   // Prepare chart data for daily requests over the last 30 days
   const dailyRequestsData = mockUsageData.map(item => ({
     date: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
@@ -36,11 +41,18 @@ export const UsagePage: React.FC = () => {
 
   // API endpoint usage data from JSON
   const endpointUsageData = endpointUsage.map((item, index) => {
-    const colors = ['#0284c7', '#059669', '#dc2626', '#ca8a04', '#9333ea', '#ea580c'];
+    const chartColors = [
+      COLORS.primary.blue,
+      COLORS.primary.green,
+      COLORS.primary.red,
+      COLORS.primary.yellow,
+      COLORS.primary.purple,
+      COLORS.primary.orange
+    ];
     return {
       label: item.endpoint,
       value: item.requests,
-      color: colors[index % colors.length]
+      color: chartColors[index % chartColors.length]
     };
   });
 
@@ -115,7 +127,7 @@ export const UsagePage: React.FC = () => {
         <LineChart
           data={dailyRequestsData}
           title="Daily Requests (Last 30 Days)"
-          color="#0284c7"
+          color={COLORS.chart.line}
           yAxisLabel="Requests"
             formatValue={(value: number) => formatNumber(value)}
         />
@@ -124,7 +136,7 @@ export const UsagePage: React.FC = () => {
           <LineChart
             data={hourlyRequestsData}
             title="Today's Hourly Requests"
-            color="#059669"
+            color={COLORS.chart.bar}
             height={250}
             yAxisLabel="Requests"
             formatValue={(value: number) => value.toString()}
@@ -133,7 +145,7 @@ export const UsagePage: React.FC = () => {
           <LineChart
             data={responseTimeChartData}
             title="Response Time Trend (Last 7 Days)"
-            color="#dc2626"
+            color={COLORS.chart.accent}
             height={250}
             yAxisLabel="Latency (ms)"
             formatValue={(value: number) => `${value}ms`}

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Card } from '../components/Card';
+import { usePageTitle } from '../hooks/useDocumentTitle';
 
 export const DocsPage: React.FC = () => {
+  // Set the page title
+  usePageTitle('docs');
+  
   return (
     <div>
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Documentation</h1>

@@ -4,8 +4,12 @@ import { useAuth } from '../contexts/useAuth';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Card } from '../components/Card';
+import { usePageTitle } from '../hooks/useDocumentTitle';
 
 export const LoginPage: React.FC = () => {
+  // Set the page title
+  usePageTitle('login');
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');

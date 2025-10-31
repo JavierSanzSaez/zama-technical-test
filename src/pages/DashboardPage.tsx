@@ -5,9 +5,14 @@ import { Button } from '../components/Button';
 import { MiniChart } from '../components/MiniChart';
 import { useAuth } from '../contexts/useAuth';
 import { mockUsageData, mockHourlyData, mockSummaryStats } from '../data/mockUsageData';
+import { COLORS, CHART_CONFIG } from '../constants';
+import { usePageTitle } from '../hooks/useDocumentTitle';
 
 export const DashboardPage: React.FC = () => {
   const { user } = useAuth();
+  
+  // Set the page title
+  usePageTitle('dashboard');
 
   // Get recent data for mini charts
   const recentDailyData = mockUsageData.slice(-7).map((d) => d.requests);
@@ -69,9 +74,9 @@ export const DashboardPage: React.FC = () => {
             </div>
             <MiniChart 
               data={[2, 3, 3, 2, 2, 3, 3]} 
-              color="#0284c7"
-              width={60}
-              height={30}
+              color={COLORS.primary.blue}
+              width={CHART_CONFIG.dimensions.miniChartWidth / 2}
+              height={CHART_CONFIG.dimensions.miniChartHeight * 0.75}
             />
           </div>
         </Card>
@@ -86,9 +91,9 @@ export const DashboardPage: React.FC = () => {
             </div>
             <MiniChart 
               data={todayHourlyData.slice(-8)} 
-              color="#16a34a"
-              width={60}
-              height={30}
+              color={COLORS.primary.green}
+              width={CHART_CONFIG.dimensions.miniChartWidth / 2}
+              height={CHART_CONFIG.dimensions.miniChartHeight * 0.75}
             />
           </div>
         </Card>
@@ -103,9 +108,9 @@ export const DashboardPage: React.FC = () => {
             </div>
             <MiniChart 
               data={recentDailyData} 
-              color="#7c3aed"
-              width={60}
-              height={30}
+              color={COLORS.primary.purple}
+              width={CHART_CONFIG.dimensions.miniChartWidth / 2}
+              height={CHART_CONFIG.dimensions.miniChartHeight * 0.75}
             />
           </div>
         </Card>
