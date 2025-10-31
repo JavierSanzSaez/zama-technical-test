@@ -75,13 +75,22 @@ export const UsagePage: React.FC = () => {
     marginBottom: spacing[4],
   };
 
-  const mockData = [
-    { date: 'Oct 31, 2025', requests: 0, errors: 0, avgLatency: '-' },
-    { date: 'Oct 30, 2025', requests: 0, errors: 0, avgLatency: '-' },
-    { date: 'Oct 29, 2025', requests: 0, errors: 0, avgLatency: '-' },
-    { date: 'Oct 28, 2025', requests: 0, errors: 0, avgLatency: '-' },
-    { date: 'Oct 27, 2025', requests: 0, errors: 0, avgLatency: '-' },
-  ];
+  // Generate dynamic dates for the last 5 days
+  const today = new Date();
+  const mockData = Array.from({ length: 5 }, (_, i) => {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    return {
+      date: new Intl.DateTimeFormat('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      }).format(date),
+      requests: 0,
+      errors: 0,
+      avgLatency: '-',
+    };
+  });
 
   return (
     <div>

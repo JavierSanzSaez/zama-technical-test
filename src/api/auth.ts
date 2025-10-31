@@ -30,6 +30,8 @@ export const authAPI = {
     };
 
     // Store in localStorage (simulating HTTP-only cookie)
+    // NOTE: This is for demo purposes only. In production, use actual HTTP-only
+    // cookies set by the server for security. localStorage is vulnerable to XSS attacks.
     currentUser = user;
     localStorage.setItem(SESSION_KEY, JSON.stringify(user));
 
