@@ -1,0 +1,527 @@
+﻿{
+  "dailyRequests": [
+    {
+      "date": "2025-10-02",
+      "requests": 313,
+      "errors": 14,
+      "avgLatency": 245,
+      "timestamp": 1759411603935
+    },
+    {
+      "date": "2025-10-03",
+      "requests": 321,
+      "errors": 0,
+      "avgLatency": 231,
+      "timestamp": 1759498003935
+    },
+    {
+      "date": "2025-10-04",
+      "requests": 423,
+      "errors": 2,
+      "avgLatency": 116,
+      "timestamp": 1759584403935
+    },
+    {
+      "date": "2025-10-05",
+      "requests": 343,
+      "errors": 1,
+      "avgLatency": 237,
+      "timestamp": 1759670803935
+    },
+    {
+      "date": "2025-10-06",
+      "requests": 247,
+      "errors": 7,
+      "avgLatency": 72,
+      "timestamp": 1759757203935
+    },
+    {
+      "date": "2025-10-07",
+      "requests": 356,
+      "errors": 13,
+      "avgLatency": 243,
+      "timestamp": 1759843603935
+    },
+    {
+      "date": "2025-10-08",
+      "requests": 456,
+      "errors": 6,
+      "avgLatency": 108,
+      "timestamp": 1759930003935
+    },
+    {
+      "date": "2025-10-09",
+      "requests": 546,
+      "errors": 19,
+      "avgLatency": 185,
+      "timestamp": 1760016403935
+    },
+    {
+      "date": "2025-10-10",
+      "requests": 517,
+      "errors": 19,
+      "avgLatency": 243,
+      "timestamp": 1760102803935
+    },
+    {
+      "date": "2025-10-11",
+      "requests": 540,
+      "errors": 2,
+      "avgLatency": 207,
+      "timestamp": 1760189203935
+    },
+    {
+      "date": "2025-10-12",
+      "requests": 369,
+      "errors": 13,
+      "avgLatency": 176,
+      "timestamp": 1760275603935
+    },
+    {
+      "date": "2025-10-13",
+      "requests": 438,
+      "errors": 13,
+      "avgLatency": 137,
+      "timestamp": 1760362003935
+    },
+    {
+      "date": "2025-10-14",
+      "requests": 133,
+      "errors": 4,
+      "avgLatency": 137,
+      "timestamp": 1760448403935
+    },
+    {
+      "date": "2025-10-15",
+      "requests": 105,
+      "errors": 0,
+      "avgLatency": 164,
+      "timestamp": 1760534803935
+    },
+    {
+      "date": "2025-10-16",
+      "requests": 190,
+      "errors": 3,
+      "avgLatency": 122,
+      "timestamp": 1760621203935
+    },
+    {
+      "date": "2025-10-17",
+      "requests": 376,
+      "errors": 15,
+      "avgLatency": 230,
+      "timestamp": 1760707603935
+    },
+    {
+      "date": "2025-10-18",
+      "requests": 271,
+      "errors": 5,
+      "avgLatency": 99,
+      "timestamp": 1760794003935
+    },
+    {
+      "date": "2025-10-19",
+      "requests": 547,
+      "errors": 0,
+      "avgLatency": 231,
+      "timestamp": 1760880403935
+    },
+    {
+      "date": "2025-10-20",
+      "requests": 466,
+      "errors": 3,
+      "avgLatency": 92,
+      "timestamp": 1760966803935
+    },
+    {
+      "date": "2025-10-21",
+      "requests": 135,
+      "errors": 2,
+      "avgLatency": 220,
+      "timestamp": 1761053203935
+    },
+    {
+      "date": "2025-10-22",
+      "requests": 520,
+      "errors": 6,
+      "avgLatency": 90,
+      "timestamp": 1761139603935
+    },
+    {
+      "date": "2025-10-23",
+      "requests": 488,
+      "errors": 18,
+      "avgLatency": 117,
+      "timestamp": 1761226003935
+    },
+    {
+      "date": "2025-10-24",
+      "requests": 146,
+      "errors": 2,
+      "avgLatency": 245,
+      "timestamp": 1761312403935
+    },
+    {
+      "date": "2025-10-25",
+      "requests": 468,
+      "errors": 1,
+      "avgLatency": 217,
+      "timestamp": 1761398803935
+    },
+    {
+      "date": "2025-10-26",
+      "requests": 488,
+      "errors": 0,
+      "avgLatency": 79,
+      "timestamp": 1761488803935
+    },
+    {
+      "date": "2025-10-27",
+      "requests": 170,
+      "errors": 3,
+      "avgLatency": 88,
+      "timestamp": 1761575203935
+    },
+    {
+      "date": "2025-10-28",
+      "requests": 188,
+      "errors": 0,
+      "avgLatency": 61,
+      "timestamp": 1761661603935
+    },
+    {
+      "date": "2025-10-29",
+      "requests": 464,
+      "errors": 13,
+      "avgLatency": 232,
+      "timestamp": 1761748003935
+    },
+    {
+      "date": "2025-10-30",
+      "requests": 274,
+      "errors": 3,
+      "avgLatency": 236,
+      "timestamp": 1761834403935
+    },
+    {
+      "date": "2025-10-31",
+      "requests": 259,
+      "errors": 12,
+      "avgLatency": 242,
+      "timestamp": 1761920803935
+    }
+  ],
+  "hourlyRequests": [
+    {
+      "date": "00:00",
+      "requests": 11,
+      "errors": 0,
+      "avgLatency": 119,
+      "timestamp": 1761865200000
+    },
+    {
+      "date": "01:00",
+      "requests": 5,
+      "errors": 0,
+      "avgLatency": 187,
+      "timestamp": 1761868800000
+    },
+    {
+      "date": "02:00",
+      "requests": 5,
+      "errors": 0,
+      "avgLatency": 102,
+      "timestamp": 1761872400000
+    },
+    {
+      "date": "03:00",
+      "requests": 10,
+      "errors": 0,
+      "avgLatency": 131,
+      "timestamp": 1761876000000
+    },
+    {
+      "date": "04:00",
+      "requests": 7,
+      "errors": 0,
+      "avgLatency": 70,
+      "timestamp": 1761879600000
+    },
+    {
+      "date": "05:00",
+      "requests": 6,
+      "errors": 0,
+      "avgLatency": 70,
+      "timestamp": 1761883200000
+    },
+    {
+      "date": "06:00",
+      "requests": 6,
+      "errors": 0,
+      "avgLatency": 139,
+      "timestamp": 1761886800000
+    },
+    {
+      "date": "07:00",
+      "requests": 9,
+      "errors": 0,
+      "avgLatency": 74,
+      "timestamp": 1761890400000
+    },
+    {
+      "date": "08:00",
+      "requests": 9,
+      "errors": 0,
+      "avgLatency": 135,
+      "timestamp": 1761894000000
+    },
+    {
+      "date": "09:00",
+      "requests": 66,
+      "errors": 0,
+      "avgLatency": 95,
+      "timestamp": 1761897600000
+    },
+    {
+      "date": "10:00",
+      "requests": 26,
+      "errors": 0,
+      "avgLatency": 184,
+      "timestamp": 1761901200000
+    },
+    {
+      "date": "11:00",
+      "requests": 55,
+      "errors": 0,
+      "avgLatency": 125,
+      "timestamp": 1761904800000
+    },
+    {
+      "date": "12:00",
+      "requests": 65,
+      "errors": 0,
+      "avgLatency": 109,
+      "timestamp": 1761908400000
+    },
+    {
+      "date": "13:00",
+      "requests": 59,
+      "errors": 1,
+      "avgLatency": 90,
+      "timestamp": 1761912000000
+    },
+    {
+      "date": "14:00",
+      "requests": 23,
+      "errors": 0,
+      "avgLatency": 138,
+      "timestamp": 1761915600000
+    },
+    {
+      "date": "15:00",
+      "requests": 64,
+      "errors": 1,
+      "avgLatency": 84,
+      "timestamp": 1761919200000
+    },
+    {
+      "date": "16:00",
+      "requests": 67,
+      "errors": 1,
+      "avgLatency": 159,
+      "timestamp": 1761922800000
+    },
+    {
+      "date": "17:00",
+      "requests": 41,
+      "errors": 0,
+      "avgLatency": 143,
+      "timestamp": 1761926400000
+    },
+    {
+      "date": "18:00",
+      "requests": 33,
+      "errors": 0,
+      "avgLatency": 142,
+      "timestamp": 1761930000000
+    },
+    {
+      "date": "19:00",
+      "requests": 11,
+      "errors": 0,
+      "avgLatency": 188,
+      "timestamp": 1761933600000
+    },
+    {
+      "date": "20:00",
+      "requests": 27,
+      "errors": 0,
+      "avgLatency": 49,
+      "timestamp": 1761937200000
+    },
+    {
+      "date": "21:00",
+      "requests": 28,
+      "errors": 0,
+      "avgLatency": 89,
+      "timestamp": 1761940800000
+    },
+    {
+      "date": "22:00",
+      "requests": 21,
+      "errors": 0,
+      "avgLatency": 101,
+      "timestamp": 1761944400000
+    },
+    {
+      "date": "23:00",
+      "requests": 8,
+      "errors": 0,
+      "avgLatency": 77,
+      "timestamp": 1761948000000
+    }
+  ],
+  "dailySummary": [
+    {
+      "date": "Oct 25",
+      "totalRequests": 826,
+      "successfulRequests": 826,
+      "errors": 0,
+      "avgLatency": 207,
+      "peakHour": 11,
+      "minHour": 4
+    },
+    {
+      "date": "Oct 26",
+      "totalRequests": 548,
+      "successfulRequests": 531,
+      "errors": 17,
+      "avgLatency": 226,
+      "peakHour": 13,
+      "minHour": 4
+    },
+    {
+      "date": "Oct 27",
+      "totalRequests": 626,
+      "successfulRequests": 606,
+      "errors": 20,
+      "avgLatency": 61,
+      "peakHour": 13,
+      "minHour": 4
+    },
+    {
+      "date": "Oct 28",
+      "totalRequests": 481,
+      "successfulRequests": 467,
+      "errors": 14,
+      "avgLatency": 182,
+      "peakHour": 17,
+      "minHour": 3
+    },
+    {
+      "date": "Oct 29",
+      "totalRequests": 668,
+      "successfulRequests": 663,
+      "errors": 5,
+      "avgLatency": 189,
+      "peakHour": 15,
+      "minHour": 3
+    },
+    {
+      "date": "Oct 30",
+      "totalRequests": 950,
+      "successfulRequests": 921,
+      "errors": 29,
+      "avgLatency": 148,
+      "peakHour": 13,
+      "minHour": 6
+    },
+    {
+      "date": "Oct 31",
+      "totalRequests": 995,
+      "successfulRequests": 966,
+      "errors": 29,
+      "avgLatency": 69,
+      "peakHour": 10,
+      "minHour": 3
+    }
+  ],
+  "responseTimeData": [
+    {
+      "date": "Oct 25",
+      "avgResponseTime": 210,
+      "timestamp": 1761398803947
+    },
+    {
+      "date": "Oct 26",
+      "avgResponseTime": 186,
+      "timestamp": 1761488803947
+    },
+    {
+      "date": "Oct 27",
+      "avgResponseTime": 101,
+      "timestamp": 1761575203947
+    },
+    {
+      "date": "Oct 28",
+      "avgResponseTime": 157,
+      "timestamp": 1761661603947
+    },
+    {
+      "date": "Oct 29",
+      "avgResponseTime": 212,
+      "timestamp": 1761748003947
+    },
+    {
+      "date": "Oct 30",
+      "avgResponseTime": 201,
+      "timestamp": 1761834403947
+    },
+    {
+      "date": "Oct 31",
+      "avgResponseTime": 155,
+      "timestamp": 1761920803947
+    }
+  ],
+  "endpointUsage": [
+    {
+      "endpoint": "/api/users",
+      "requests": 250,
+      "avgLatency": 90
+    },
+    {
+      "endpoint": "/api/auth/login",
+      "requests": 146,
+      "avgLatency": 245
+    },
+    {
+      "endpoint": "/api/products",
+      "requests": 742,
+      "avgLatency": 106
+    },
+    {
+      "endpoint": "/api/orders",
+      "requests": 649,
+      "avgLatency": 201
+    },
+    {
+      "endpoint": "/api/payments",
+      "requests": 659,
+      "avgLatency": 248
+    },
+    {
+      "endpoint": "/api/search",
+      "requests": 360,
+      "avgLatency": 221
+    }
+  ],
+  "summaryStats": {
+    "requestsToday": 662,
+    "requestsThisMonth": 10557,
+    "totalRequests": 35465,
+    "avgResponseTime": 170,
+    "errorRate": "1.89",
+    "activeApiKeys": 7
+  },
+  "generatedAt": "2025-10-31T14:26:43.947Z"
+}

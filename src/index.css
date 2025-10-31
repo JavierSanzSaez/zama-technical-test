@@ -31,3 +31,22 @@
     @apply bg-white rounded-lg shadow-md border border-gray-200;
   }
 }
+
+/* Remove focus outlines from Recharts components */
+.recharts-wrapper svg {
+  outline: none !important;
+}
+
+.recharts-wrapper svg * {
+  outline: none !important;
+}
+
+/* Remove focus styles from all chart elements */
+.recharts-cartesian-grid,
+.recharts-line,
+.recharts-bar,
+.recharts-area,
+.recharts-dot,
+.recharts-surface {
+  outline: none !important;
+}

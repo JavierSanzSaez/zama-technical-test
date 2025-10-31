@@ -2,10 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
+import { MiniChart } from '../components/MiniChart';
 import { useAuth } from '../contexts/useAuth';
+import { mockUsageData, mockHourlyData, mockSummaryStats } from '../data/mockUsageData';
 
 export const DashboardPage: React.FC = () => {
   const { user } = useAuth();
+
+  // Get recent data for mini charts
+  const recentDailyData = mockUsageData.slice(-7).map((d) => d.requests);
+  const todayHourlyData = mockHourlyData.slice(-12).map((d) => d.requests);
 
   return (
     <div>
@@ -54,20 +60,54 @@ export const DashboardPage: React.FC = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <Card>
-          <div className="text-2xl font-bold text-blue-600">0</div>
-          <div className="text-sm text-gray-500 mt-1">Active API Keys</div>
+          <div className="flex justify-between items-start">
+            <div>
+              <div className="text-2xl font-bold text-blue-600">{mockSummaryStats.activeApiKeys}</div>
+              <div className="text-sm text-gray-500 mt-1">Active API Keys</div>
+            </div>
+            <MiniChart 
+              data={[2, 3, 3, 2, 2, 3, 3]} 
+              color="#0284c7"
+              width={60}
+              height={30}
+            />
+          </div>
         </Card>
 
         <Card>
-          <div className="text-2xl font-bold text-blue-600">0</div>
-          <div className="text-sm text-gray-500 mt-1">API Requests Today</div>
+          <div className="flex justify-between items-start">
+            <div>
+              <div className="text-2xl font-bold text-green-600">
+                {todayHourlyData.reduce((a: number, b: number) => a + b, 0).toLocaleString()}
+              </div>
+              <div className="text-sm text-gray-500 mt-1">API Requests Today</div>
+            </div>
+            <MiniChart 
+              data={todayHourlyData.slice(-8)} 
+              color="#16a34a"
+              width={60}
+              height={30}
+            />
+          </div>
         </Card>
 
         <Card>
-          <div className="text-2xl font-bold text-blue-600">0</div>
-          <div className="text-sm text-gray-500 mt-1">Total Requests</div>
+          <div className="flex justify-between items-start">
+            <div>
+              <div className="text-2xl font-bold text-purple-600">
+                {mockSummaryStats.totalRequests.toLocaleString()}
+              </div>
+              <div className="text-sm text-gray-500 mt-1">Total Requests</div>
+            </div>
+            <MiniChart 
+              data={recentDailyData} 
+              color="#7c3aed"
+              width={60}
+              height={30}
+            />
+          </div>
         </Card>
       </div>
     </div>
