@@ -1,5 +1,10 @@
 // Simulated API for authentication
-// In a real app, this would make HTTP requests to serverless functions
+// NOTE: This is a demo implementation. In production:
+// 1. Use actual HTTP-only cookies set by the server
+// 2. Never store session tokens in localStorage (XSS vulnerability)
+// 3. Implement proper CSRF protection
+// 4. Use secure, httpOnly, sameSite cookie attributes
+// 5. Validate sessions server-side on every request
 
 export interface User {
   id: string;

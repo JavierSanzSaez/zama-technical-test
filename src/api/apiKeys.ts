@@ -1,4 +1,10 @@
 // API Key management API
+// NOTE: This is a demo implementation using localStorage.
+// In production, API keys should be:
+// 1. Stored securely in a database with encryption
+// 2. Generated and validated server-side only
+// 3. Never stored in browser localStorage (XSS vulnerability)
+// 4. Transmitted only over HTTPS with proper authentication
 
 export interface APIKey {
   id: string;
