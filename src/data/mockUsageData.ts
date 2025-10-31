@@ -14,8 +14,6 @@ export interface DailyUsage {
   successfulRequests: number;
   errors: number;
   avgLatency: number;
-  peakHour: number;
-  minHour: number;
 }
 
 export interface ResponseTimeData {
@@ -44,7 +42,6 @@ export interface MockDataStructure {
   hourlyRequests: UsageDataPoint[];
   dailySummary: DailyUsage[];
   responseTimeData: ResponseTimeData[];
-  endpointUsage: EndpointUsage[];
   summaryStats: SummaryStats;
   generatedAt: string;
 }
@@ -60,7 +57,6 @@ export const mockUsageData = mockData.dailyRequests;
 export const mockHourlyData = mockData.hourlyRequests;
 export const mockDailySummary = mockData.dailySummary;
 export const responseTimeData = mockData.responseTimeData;
-export const endpointUsage = mockData.endpointUsage;
 export const mockSummaryStats = mockData.summaryStats;
 
 // Export the complete data structure

@@ -64,13 +64,6 @@ export const UsagePage: React.FC = () => {
     );
   }, [selectedPeriod]);
 
-  // Prepare chart data for today's hourly requests
-  const hourlyRequestsData = mockHourlyData.map((item) => ({
-    date: item.date,
-    value: item.requests,
-    timestamp: item.timestamp,
-  }));
-
   return (
     <div>
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Usage Metrics</h1>

@@ -387,63 +387,49 @@
       "totalRequests": 826,
       "successfulRequests": 826,
       "errors": 0,
-      "avgLatency": 207,
-      "peakHour": 11,
-      "minHour": 4
+      "avgLatency": 207
     },
     {
       "date": "Oct 26",
       "totalRequests": 548,
       "successfulRequests": 531,
       "errors": 17,
-      "avgLatency": 226,
-      "peakHour": 13,
-      "minHour": 4
+      "avgLatency": 226
     },
     {
       "date": "Oct 27",
       "totalRequests": 626,
       "successfulRequests": 606,
       "errors": 20,
-      "avgLatency": 61,
-      "peakHour": 13,
-      "minHour": 4
+      "avgLatency": 61
     },
     {
       "date": "Oct 28",
       "totalRequests": 481,
       "successfulRequests": 467,
       "errors": 14,
-      "avgLatency": 182,
-      "peakHour": 17,
-      "minHour": 3
+      "avgLatency": 182
     },
     {
       "date": "Oct 29",
       "totalRequests": 668,
       "successfulRequests": 663,
       "errors": 5,
-      "avgLatency": 189,
-      "peakHour": 15,
-      "minHour": 3
+      "avgLatency": 189
     },
     {
       "date": "Oct 30",
       "totalRequests": 950,
       "successfulRequests": 921,
       "errors": 29,
-      "avgLatency": 148,
-      "peakHour": 13,
-      "minHour": 6
+      "avgLatency": 148
     },
     {
       "date": "Oct 31",
       "totalRequests": 995,
       "successfulRequests": 966,
       "errors": 29,
-      "avgLatency": 69,
-      "peakHour": 10,
-      "minHour": 3
+      "avgLatency": 69
     }
   ],
   "responseTimeData": [
@@ -481,38 +467,6 @@
       "date": "Oct 31",
       "avgResponseTime": 155,
       "timestamp": 1761920803947
-    }
-  ],
-  "endpointUsage": [
-    {
-      "endpoint": "/api/users",
-      "requests": 250,
-      "avgLatency": 90
-    },
-    {
-      "endpoint": "/api/auth/login",
-      "requests": 146,
-      "avgLatency": 245
-    },
-    {
-      "endpoint": "/api/products",
-      "requests": 742,
-      "avgLatency": 106
-    },
-    {
-      "endpoint": "/api/orders",
-      "requests": 649,
-      "avgLatency": 201
-    },
-    {
-      "endpoint": "/api/payments",
-      "requests": 659,
-      "avgLatency": 248
-    },
-    {
-      "endpoint": "/api/search",
-      "requests": 360,
-      "avgLatency": 221
     }
   ],
   "summaryStats": {
