@@ -5,7 +5,7 @@
 export const COLORS = {
   // Primary Colors
   primary: {
-    blue: "#fbbf24",
+    blue: "#ffffff",
     green: "#16a34a",
     purple: "#7c3aed",
     orange: "#ea580c",
@@ -16,12 +16,12 @@ export const COLORS = {
 
   // Chart Colors (for consistent data visualization)
   chart: {
-    line: "#fbbf24",
-    bar: "#059669",
-    area: "#8b5cf6",
-    accent: "#dc2626",
-    secondary: "#ca8a04",
-    tertiary: "#9333ea",
+    line: "#ffffff",
+    bar: "#d4d4d4",
+    area: "#a3a3a3",
+    accent: "#737373",
+    secondary: "#525252",
+    tertiary: "#404040",
   },
 
   // Status Colors

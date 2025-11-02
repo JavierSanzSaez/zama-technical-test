@@ -36,9 +36,9 @@ export const LineChart: React.FC<LineChartProps> = ({
 }) => {
   if (!data || data.length === 0) {
     return (
-      <div className="bg-dark-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-100 mb-4">{title}</h3>
-        <div className="flex items-center justify-center h-64 text-gray-400">
+      <div className="bg-mono-900 border border-mono-800 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-mono-50 mb-4">{title}</h3>
+        <div className="flex items-center justify-center h-64 text-mono-400">
           No data available
         </div>
       </div>
@@ -49,9 +49,9 @@ export const LineChart: React.FC<LineChartProps> = ({
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-dark-700 border border-dark-600 rounded-lg shadow-lg p-3">
-          <p className="text-sm font-medium text-gray-100">{`Date: ${label}`}</p>
-          <p className="text-sm text-gray-300">
+        <div className="bg-mono-950 border border-mono-700 rounded-lg shadow-lg p-3">
+          <p className="text-sm font-medium text-mono-50">{`Date: ${label}`}</p>
+          <p className="text-sm text-mono-200">
             <span className="font-medium" style={{ color: color }}>
               {yAxisLabel}: {formatValue(payload[0].value)}
             </span>
@@ -81,8 +81,8 @@ export const LineChart: React.FC<LineChartProps> = ({
   };
 
   return (
-    <div className="bg-dark-800 rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-gray-100 mb-4">{title}</h3>
+    <div className="bg-mono-900 border border-mono-800 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-mono-50 mb-4">{title}</h3>
       <ResponsiveContainer width="100%" height={height}>
         <RechartsLineChart
           data={data}
@@ -94,25 +94,25 @@ export const LineChart: React.FC<LineChartProps> = ({
           }}
         >
           {showGrid && (
-            <CartesianGrid strokeDasharray="3 3" stroke="#5c1a00" className="opacity-30" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#6c757d" className="opacity-20" />
           )}
           <XAxis 
             dataKey="date" 
             tickFormatter={formatXAxisTick}
-            tick={{ fontSize: 12, fill: '#9ca3af' }}
-            axisLine={{ stroke: '#5c1a00' }}
-            tickLine={{ stroke: '#5c1a00' }}
+            tick={{ fontSize: 12, fill: '#adb5bd' }}
+            axisLine={{ stroke: '#6c757d' }}
+            tickLine={{ stroke: '#6c757d' }}
           />
           <YAxis 
             tickFormatter={formatYAxisTick}
-            tick={{ fontSize: 12, fill: '#9ca3af' }}
-            axisLine={{ stroke: '#5c1a00' }}
-            tickLine={{ stroke: '#5c1a00' }}
+            tick={{ fontSize: 12, fill: '#adb5bd' }}
+            axisLine={{ stroke: '#6c757d' }}
+            tickLine={{ stroke: '#6c757d' }}
             label={{ 
               value: yAxisLabel, 
               angle: -90, 
               position: 'insideLeft',
-              style: { textAnchor: 'middle', fill: '#9ca3af', fontSize: '12px' }
+              style: { textAnchor: 'middle', fill: '#adb5bd', fontSize: '12px' }
             }}
           />
           <Tooltip content={<CustomTooltip />} />
@@ -122,7 +122,7 @@ export const LineChart: React.FC<LineChartProps> = ({
             stroke={color}
             strokeWidth={2}
             dot={{ fill: color, strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, fill: color, strokeWidth: 2, stroke: '#2d0f00' }}
+            activeDot={{ r: 6, fill: color, strokeWidth: 2, stroke: '#000000' }}
             animationDuration={300}
           />
         </RechartsLineChart>

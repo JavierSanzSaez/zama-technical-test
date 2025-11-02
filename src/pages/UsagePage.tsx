@@ -66,8 +66,8 @@ export const UsagePage: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-100 mb-2">Usage Metrics</h1>
-      <p className="text-lg text-gray-400 mb-6">
+      <h1 className="text-3xl font-bold text-mono-50 mb-2">Usage Metrics</h1>
+      <p className="text-lg text-mono-400 mb-6">
         Monitor your API usage, request counts, and performance metrics.
       </p>
 
@@ -79,10 +79,10 @@ export const UsagePage: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-warm-400">
+            <div className="text-3xl font-bold text-blue-400">
               {filteredStats.totalRequests.toLocaleString()}
             </div>
-            <div className="text-base text-gray-400">
+            <div className="text-base text-mono-400">
               Total Requests ({FILTER_OPTIONS.timePeriods[selectedPeriod].label}
               )
             </div>
@@ -91,28 +91,28 @@ export const UsagePage: React.FC = () => {
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-warm-400">
+            <div className="text-3xl font-bold text-green-400">
               {filteredStats.averageRequests.toLocaleString()}
             </div>
-            <div className="text-base text-gray-400">Daily Average</div>
+            <div className="text-base text-mono-400">Daily Average</div>
           </div>
         </Card>
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-warm-400">
+            <div className="text-3xl font-bold text-red-400">
               {filteredStats.totalErrors}
             </div>
-            <div className="text-base text-gray-400">Total Errors</div>
+            <div className="text-base text-mono-400">Total Errors</div>
           </div>
         </Card>
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-warm-400">
+            <div className="text-3xl font-bold text-yellow-400">
               {filteredStats.averageLatency}ms
             </div>
-            <div className="text-base text-gray-400">Avg. Response Time</div>
+            <div className="text-base text-mono-400">Avg. Response Time</div>
           </div>
         </Card>
       </div>
@@ -121,11 +121,11 @@ export const UsagePage: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-2xl font-bold text-green-400">
+            <div className="text-2xl font-bold text-orange-400">
               {filteredStats.errorRate}%
             </div>
-            <div className="text-base text-gray-400">Error Rate</div>
-            <div className="text-xs text-gray-500">
+            <div className="text-base text-mono-400">Error Rate</div>
+            <div className="text-xs text-mono-500">
               {FILTER_OPTIONS.timePeriods[selectedPeriod].description}
             </div>
           </div>
@@ -136,20 +136,20 @@ export const UsagePage: React.FC = () => {
             <div className="text-2xl font-bold text-purple-400">
               {mockSummaryStats.activeApiKeys}
             </div>
-            <div className="text-base text-gray-400">Active API Keys</div>
-            <div className="text-xs text-gray-500">Currently active</div>
+            <div className="text-base text-mono-400">Active API Keys</div>
+            <div className="text-xs text-mono-500">Currently active</div>
           </div>
         </Card>
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-2xl font-bold text-orange-400">
+            <div className="text-2xl font-bold text-cyan-400">
               {formatNumber(
                 Math.floor(mockSummaryStats.requestsThisMonth / 30)
               )}
             </div>
-            <div className="text-base text-gray-400">Daily Average</div>
-            <div className="text-xs text-gray-500">Requests per day</div>
+            <div className="text-base text-mono-400">Daily Average</div>
+            <div className="text-xs text-mono-500">Requests per day</div>
           </div>
         </Card>
       </div>
@@ -174,55 +174,55 @@ export const UsagePage: React.FC = () => {
         />
       </div>
 
-      <div className="text-xl font-semibold text-gray-900 mb-4">
+      <div className="text-xl font-semibold text-mono-50 mb-4">
         Recent Activity
       </div>
       <Card>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b-2 border-gray-200">
-                <th className="text-sm font-semibold text-gray-700 text-left p-3">
+              <tr className="border-b-2 border-mono-700">
+                <th className="text-sm font-semibold text-mono-200 text-left p-3">
                   Date
                 </th>
-                <th className="text-sm font-semibold text-gray-700 text-left p-3">
+                <th className="text-sm font-semibold text-mono-200 text-left p-3">
                   Requests
                 </th>
-                <th className="text-sm font-semibold text-gray-700 text-left p-3">
+                <th className="text-sm font-semibold text-mono-200 text-left p-3">
                   Errors
                 </th>
-                <th className="text-sm font-semibold text-gray-700 text-left p-3">
+                <th className="text-sm font-semibold text-mono-200 text-left p-3">
                   Avg. Latency
                 </th>
-                <th className="text-sm font-semibold text-gray-700 text-left p-3">
+                <th className="text-sm font-semibold text-mono-200 text-left p-3">
                   Error Rate
                 </th>
               </tr>
             </thead>
             <tbody>
               {mockDailySummary.map((row, index) => (
-                <tr key={index} className="border-b border-gray-200">
-                  <td className="text-sm text-gray-600 p-3">{row.date}</td>
-                  <td className="text-sm text-gray-600 p-3">
+                <tr key={index} className="border-b border-mono-800">
+                  <td className="text-sm text-mono-300 p-3">{row.date}</td>
+                  <td className="text-sm text-mono-300 p-3">
                     {row.totalRequests.toLocaleString()}
                   </td>
-                  <td className="text-sm text-gray-600 p-3">
+                  <td className="text-sm text-mono-300 p-3">
                     <span
                       className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                         row.errors > 20
-                          ? "bg-red-100 text-red-800"
+                          ? "bg-mono-800 text-mono-200 border border-mono-600"
                           : row.errors > 10
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-green-100 text-green-800"
+                          ? "bg-mono-700 text-mono-300 border border-mono-600"
+                          : "bg-mono-600 text-mono-100 border border-mono-500"
                       }`}
                     >
                       {row.errors}
                     </span>
                   </td>
-                  <td className="text-sm text-gray-600 p-3">
+                  <td className="text-sm text-mono-300 p-3">
                     {row.avgLatency}ms
                   </td>
-                  <td className="text-sm text-gray-600 p-3">
+                  <td className="text-sm text-mono-300 p-3">
                     {((row.errors / row.totalRequests) * 100).toFixed(2)}%
                   </td>
                 </tr>
