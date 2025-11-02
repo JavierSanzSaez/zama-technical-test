@@ -159,7 +159,7 @@ export const UsagePage: React.FC = () => {
         <LineChart
           data={requestsChartData}
           title={getChartTitle("requests", selectedPeriod)}
-          color={COLORS.chart.line}
+          color={COLORS.chart.line1}
           yAxisLabel="Requests"
           formatValue={(value: number) => formatNumber(value)}
         />
@@ -167,7 +167,7 @@ export const UsagePage: React.FC = () => {
         <LineChart
           data={responseTimeChartData}
           title={getChartTitle("responseTime", selectedPeriod)}
-          color={COLORS.chart.line}
+          color={COLORS.chart.line2}
           height={250}
           yAxisLabel="Latency (ms)"
           formatValue={(value: number) => `${value}ms`}
@@ -210,10 +210,10 @@ export const UsagePage: React.FC = () => {
                     <span
                       className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                         row.errors > 20
-                          ? "bg-mono-800 text-mono-200 border border-mono-600"
+                          ? "bg-red-500/20 text-red-400 border border-red-500/30"
                           : row.errors > 10
-                          ? "bg-mono-700 text-mono-300 border border-mono-600"
-                          : "bg-mono-600 text-mono-100 border border-mono-500"
+                          ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                          : "bg-green-500/20 text-green-400 border border-green-500/30"
                       }`}
                     >
                       {row.errors}
