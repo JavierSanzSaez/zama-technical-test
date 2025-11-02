@@ -162,6 +162,7 @@ export const regenerateAPIKey = async (id: string): Promise<APIKey> => {
     ...oldKey,
     key: generateKey(),
     createdAt: new Date(),
+    status: 'active', // Always set to active when regenerating
   };
 
   keys[keyIndex] = newKey;

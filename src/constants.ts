@@ -16,7 +16,8 @@ export const COLORS = {
 
   // Chart Colors (for consistent data visualization)
   chart: {
-    line: "#ffffff",
+    line1: "#3b82f6",
+    line2: "#10b981",
     bar: "#d4d4d4",
     area: "#a3a3a3",
     accent: "#737373",

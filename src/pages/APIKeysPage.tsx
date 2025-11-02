@@ -26,6 +26,7 @@ export const APIKeysPage: React.FC = () => {
   const [regeneratedKey, setRegeneratedKey] = useState<APIKey | null>(null);
   const [countdown, setCountdown] = useState<number | null>(null);
   const [keyToDelete, setKeyToDelete] = useState<APIKey | null>(null);
+  const [keyToRevoke, setKeyToRevoke] = useState<APIKey | null>(null);
 
   useEffect(() => {
     loadKeys();
@@ -83,13 +84,31 @@ export const APIKeysPage: React.FC = () => {
     setCountdown(null);
   };
 
-  const handleRevoke = async (id: string) => {
+  const handleRevoke = (key: APIKey) => {
+    setKeyToRevoke(key);
+  };
+
+  const confirmRevoke = async () => {
+    if (!keyToRevoke) return;
+
     try {
-      await revokeAPIKey(id);
+      await revokeAPIKey(keyToRevoke.id);
+      
+      // If the revoked key is currently showing regenerated state, hide it
+      if (regeneratedKey && regeneratedKey.id === keyToRevoke.id) {
+        setRegeneratedKey(null);
+        setCountdown(null);
+      }
+      
       loadKeys();
+      setKeyToRevoke(null);
     } catch (error) {
       console.error('Failed to revoke API key:', error);
     }
+  };
+
+  const cancelRevoke = () => {
+    setKeyToRevoke(null);
   };
 
   const handleRegenerate = async (id: string) => {
@@ -332,6 +351,52 @@ export const APIKeysPage: React.FC = () => {
         </div>
       )}
 
+      {/* Revoke Confirmation Modal */}
+      {keyToRevoke && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-mono-900 border border-mono-700 rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="p-6">
+              <div className="flex items-center mb-4">
+                <div className="flex-shrink-0">
+                  <svg className="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-lg font-medium text-mono-50">Revoke API Key</h3>
+                </div>
+              </div>
+              
+              <div className="mb-6">
+                <p className="text-sm text-mono-300 mb-3">
+                  Are you sure you want to revoke the API key <strong>"{keyToRevoke.name}"</strong>?
+                </p>
+                <p className="text-sm text-yellow-400">
+                  This will immediately disable the key. Any applications using this key will stop working until you regenerate it.
+                </p>
+              </div>
+
+              <div className="flex gap-3">
+                <Button
+                  variant="secondary"
+                  onClick={cancelRevoke}
+                  className="flex-1"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={confirmRevoke}
+                  className="flex-1"
+                >
+                  Revoke Key
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {apiKeys.length === 0 ? (
         <Card>
           <div className="text-center py-12 text-mono-400">
@@ -361,8 +426,8 @@ export const APIKeysPage: React.FC = () => {
                           🔄 API Key Regenerated Successfully!
                         </h4>
                         <p className="text-sm text-mono-300 mb-2">
-                          <strong>This is your only chance to copy the new key!</strong> For security reasons, 
-                          it will be permanently hidden after you close this view. Make sure to copy and store it safely.
+                          <strong>This is your only chance to copy the new key!</strong> The key has been regenerated and reactivated. 
+                          For security reasons, it will be permanently hidden after you close this view. Make sure to copy and store it safely.
                         </p>
                         {countdown !== null && (
                           <div className="mt-3">
@@ -429,7 +494,7 @@ export const APIKeysPage: React.FC = () => {
                       <Button
                         size="sm"
                         variant="secondary"
-                        onClick={() => handleRevoke(key.id)}
+                        onClick={() => handleRevoke(key)}
                       >
                         Revoke
                       </Button>
