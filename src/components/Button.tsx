@@ -2,7 +2,7 @@ import React from 'react';
 import type { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'success';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
 }
@@ -27,36 +27,40 @@ export const Button: React.FC<ButtonProps> = ({
     'items-center',
     'justify-center',
     'focus:outline-none',
-    'focus:ring-2',
-    'focus:ring-offset-2',
     disabled ? 'cursor-not-allowed opacity-50' : '',
     fullWidth ? 'w-full' : '',
   ];
 
   const variantClasses = {
     primary: [
-      'bg-warm-600',
-      'text-white',
+      'bg-mono-200',
+      'text-mono-950',
       'shadow-sm',
-      !disabled ? 'hover:bg-warm-700 focus:ring-warm-500' : '',
+      !disabled ? 'hover:bg-mono-50' : '',
     ],
     secondary: [
-      'bg-dark-700',
-      'text-gray-200',
+      'bg-mono-800',
+      'text-mono-200',
       'border',
-      'border-dark-600',
-      !disabled ? 'hover:bg-dark-600 focus:ring-warm-500' : '',
+      'border-mono-700',
+      !disabled ? 'hover:bg-mono-700' : '',
     ],
     danger: [
       'bg-red-500',
       'text-white',
       'shadow-sm',
-      !disabled ? 'hover:bg-red-600 focus:ring-red-400' : '',
+      !disabled ? 'hover:bg-red-600' : '',
     ],
     ghost: [
       'bg-transparent',
-      'text-gray-300',
-      !disabled ? 'hover:bg-dark-800 focus:ring-warm-500' : '',
+      'text-mono-300',
+      !disabled ? 'hover:bg-mono-900' : '',
+    ],
+    success: [
+      'bg-green-500',
+      'text-white',
+      'shadow-sm',
+      !disabled ? 'hover:bg-green-600' : '',
     ],
   };
 
