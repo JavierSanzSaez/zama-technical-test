@@ -14,14 +14,14 @@ interface MiniChartProps {
 
 export const MiniChart: React.FC<MiniChartProps> = ({
   data,
-  color = '#0284c7',
+  color = '#fbbf24',
   width = 120,
   height = 40,
 }) => {
   if (!data || data.length === 0) {
     return (
       <div 
-        className="flex items-center justify-center bg-gray-100 rounded"
+        className="flex items-center justify-center bg-dark-700 rounded"
         style={{ width, height }}
       >
         <div className="text-xs text-gray-400">No data</div>

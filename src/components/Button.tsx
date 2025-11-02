@@ -35,28 +35,28 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantClasses = {
     primary: [
-      'bg-blue-600',
+      'bg-warm-600',
       'text-white',
       'shadow-sm',
-      !disabled ? 'hover:bg-blue-700 focus:ring-blue-500' : '',
+      !disabled ? 'hover:bg-warm-700 focus:ring-warm-500' : '',
     ],
     secondary: [
-      'bg-gray-100',
-      'text-gray-900',
+      'bg-dark-700',
+      'text-gray-200',
       'border',
-      'border-gray-300',
-      !disabled ? 'hover:bg-gray-200 focus:ring-gray-500' : '',
+      'border-dark-600',
+      !disabled ? 'hover:bg-dark-600 focus:ring-warm-500' : '',
     ],
     danger: [
-      'bg-red-600',
+      'bg-red-500',
       'text-white',
       'shadow-sm',
-      !disabled ? 'hover:bg-red-700 focus:ring-red-500' : '',
+      !disabled ? 'hover:bg-red-600 focus:ring-red-400' : '',
     ],
     ghost: [
       'bg-transparent',
-      'text-gray-700',
-      !disabled ? 'hover:bg-gray-100 focus:ring-gray-500' : '',
+      'text-gray-300',
+      !disabled ? 'hover:bg-dark-800 focus:ring-warm-500' : '',
     ],
   };
 

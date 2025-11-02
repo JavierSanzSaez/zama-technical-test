@@ -31,15 +31,13 @@ export const Card: React.FC<CardProps> = ({
   };
 
   const classes = [
-    'bg-white',
+    'bg-dark-800',
     'rounded-lg',
-    'shadow-md',
-    'border',
-    'border-gray-200',
+    'shadow-lg',
     'transition-all',
     'duration-200',
     paddingClasses[padding],
-    hover ? 'hover:shadow-lg hover:-translate-y-1 cursor-pointer' : '',
+    hover ? 'hover:shadow-xl hover:-translate-y-1 cursor-pointer' : '',
     className,
   ]
     .join(' ');

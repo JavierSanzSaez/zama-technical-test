@@ -106,8 +106,8 @@ export const APIKeysPage: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">API Keys</h1>
-      <p className="text-lg text-gray-600 mb-6">
+      <h1 className="text-3xl font-bold text-gray-100 mb-2">API Keys</h1>
+      <p className="text-lg text-gray-400 mb-6">
         Manage your API keys for authenticating requests to the API.
       </p>
 
@@ -157,7 +157,7 @@ export const APIKeysPage: React.FC = () => {
 
       {apiKeys.length === 0 ? (
         <Card>
-          <div className="text-center py-12 text-gray-500">
+          <div className="text-center py-12 text-gray-400">
             <p>No API keys yet. Create your first one to get started!</p>
           </div>
         </Card>
@@ -168,8 +168,8 @@ export const APIKeysPage: React.FC = () => {
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <div className="text-lg font-semibold text-gray-900">{key.name}</div>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-lg font-semibold text-gray-100">{key.name}</div>
+                    <div className="text-sm text-gray-400">
                       Created: {formatDate(key.createdAt)}
                     </div>
                   </div>
@@ -186,16 +186,16 @@ export const APIKeysPage: React.FC = () => {
                       <div>
                         {newlyCreatedKey === key.id ? (
                           <div>
-                            <h4 className="text-sm font-bold text-blue-800 mb-1">
+                            <h4 className="text-sm font-bold text-warm-400 mb-1">
                               🎉 API Key Created Successfully!
                             </h4>
-                            <p className="text-sm text-blue-700">
+                            <p className="text-sm text-warm-300">
                               <strong>This is your only chance to copy this key!</strong> For security reasons, 
                               it will be permanently hidden once you close this view. Make sure to copy and store it safely.
                             </p>
                           </div>
                         ) : (
-                          <span className="text-sm font-medium text-red-800">
+                          <span className="text-sm font-medium text-red-400">
                             Last chance to copy! This key will be hidden permanently after you close this view.
                           </span>
                         )}
@@ -206,13 +206,13 @@ export const APIKeysPage: React.FC = () => {
 
                 <div className={`flex items-center gap-2 p-3 rounded-md border ${
                   revealedKey === key.id 
-                    ? 'bg-green-50 border-green-200' 
-                    : 'bg-gray-50 border-gray-200'
+                    ? 'bg-warm-900/20 border-warm-500' 
+                    : 'bg-dark-700 border-dark-600'
                 }`}>
                   <code className={`font-mono text-sm flex-1 overflow-x-auto ${
                     revealedKey === key.id 
-                      ? 'text-green-800' 
-                      : 'text-gray-700'
+                      ? 'text-warm-400' 
+                      : 'text-gray-300'
                   }`}>
                     {revealedKey === key.id ? key.key : maskAPIKey(key.key)}
                   </code>

@@ -66,8 +66,8 @@ export const UsagePage: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Usage Metrics</h1>
-      <p className="text-lg text-gray-600 mb-6">
+      <h1 className="text-3xl font-bold text-gray-100 mb-2">Usage Metrics</h1>
+      <p className="text-lg text-gray-400 mb-6">
         Monitor your API usage, request counts, and performance metrics.
       </p>
 
@@ -79,10 +79,10 @@ export const UsagePage: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-blue-600">
+            <div className="text-3xl font-bold text-warm-400">
               {filteredStats.totalRequests.toLocaleString()}
             </div>
-            <div className="text-base text-gray-600">
+            <div className="text-base text-gray-400">
               Total Requests ({FILTER_OPTIONS.timePeriods[selectedPeriod].label}
               )
             </div>
@@ -91,28 +91,28 @@ export const UsagePage: React.FC = () => {
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-blue-600">
+            <div className="text-3xl font-bold text-warm-400">
               {filteredStats.averageRequests.toLocaleString()}
             </div>
-            <div className="text-base text-gray-600">Daily Average</div>
+            <div className="text-base text-gray-400">Daily Average</div>
           </div>
         </Card>
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-blue-600">
+            <div className="text-3xl font-bold text-warm-400">
               {filteredStats.totalErrors}
             </div>
-            <div className="text-base text-gray-600">Total Errors</div>
+            <div className="text-base text-gray-400">Total Errors</div>
           </div>
         </Card>
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-3xl font-bold text-blue-600">
+            <div className="text-3xl font-bold text-warm-400">
               {filteredStats.averageLatency}ms
             </div>
-            <div className="text-base text-gray-600">Avg. Response Time</div>
+            <div className="text-base text-gray-400">Avg. Response Time</div>
           </div>
         </Card>
       </div>
@@ -121,10 +121,10 @@ export const UsagePage: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-green-400">
               {filteredStats.errorRate}%
             </div>
-            <div className="text-base text-gray-600">Error Rate</div>
+            <div className="text-base text-gray-400">Error Rate</div>
             <div className="text-xs text-gray-500">
               {FILTER_OPTIONS.timePeriods[selectedPeriod].description}
             </div>
@@ -133,22 +133,22 @@ export const UsagePage: React.FC = () => {
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-2xl font-bold text-purple-600">
+            <div className="text-2xl font-bold text-purple-400">
               {mockSummaryStats.activeApiKeys}
             </div>
-            <div className="text-base text-gray-600">Active API Keys</div>
+            <div className="text-base text-gray-400">Active API Keys</div>
             <div className="text-xs text-gray-500">Currently active</div>
           </div>
         </Card>
 
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="text-2xl font-bold text-orange-600">
+            <div className="text-2xl font-bold text-orange-400">
               {formatNumber(
                 Math.floor(mockSummaryStats.requestsThisMonth / 30)
               )}
             </div>
-            <div className="text-base text-gray-600">Daily Average</div>
+            <div className="text-base text-gray-400">Daily Average</div>
             <div className="text-xs text-gray-500">Requests per day</div>
           </div>
         </Card>
@@ -167,7 +167,7 @@ export const UsagePage: React.FC = () => {
         <LineChart
           data={responseTimeChartData}
           title={getChartTitle("responseTime", selectedPeriod)}
-          color={COLORS.chart.accent}
+          color={COLORS.chart.line}
           height={250}
           yAxisLabel="Latency (ms)"
           formatValue={(value: number) => `${value}ms`}

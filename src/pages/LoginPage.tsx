@@ -33,12 +33,12 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
+    <div className="min-h-screen flex items-center justify-center bg-dark-900 px-6">
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold text-blue-600 text-center mb-2">
+        <h1 className="text-3xl font-bold text-warm-400 text-center mb-2">
           Sandbox Console
         </h1>
-        <p className="text-base text-gray-600 text-center mb-8">
+        <p className="text-base text-gray-400 text-center mb-8">
           Sign in to manage your API keys
         </p>
         
@@ -63,7 +63,7 @@ export const LoginPage: React.FC = () => {
               fullWidth
             />
             {error && (
-              <div className="text-sm text-red-600 text-center p-3 bg-red-50 rounded">
+              <div className="text-sm text-red-400 text-center p-3 bg-red-900/20 rounded">
                 {error}
               </div>
             )}

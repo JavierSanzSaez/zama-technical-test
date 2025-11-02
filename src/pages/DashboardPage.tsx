@@ -24,10 +24,10 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      <h1 className="text-3xl font-bold text-gray-100 mb-2">
         Welcome back, {user?.name}!
       </h1>
-      <p className="text-lg text-gray-600 mb-8">
+      <p className="text-lg text-gray-400 mb-8">
         Manage your API keys and monitor your usage from this dashboard.
       </p>
 
@@ -38,10 +38,10 @@ export const DashboardPage: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Card hover>
-          <div className="text-xl font-semibold text-gray-900 mb-3">
+          <div className="text-xl font-semibold text-gray-100 mb-3">
             API Keys
           </div>
-          <div className="text-base text-gray-600 mb-4 leading-relaxed">
+          <div className="text-base text-gray-400 mb-4 leading-relaxed">
             Create, manage, and regenerate your API keys securely.
           </div>
           <Link to="/api-keys">
@@ -50,10 +50,10 @@ export const DashboardPage: React.FC = () => {
         </Card>
 
         <Card hover>
-          <div className="text-xl font-semibold text-gray-900 mb-3">
+          <div className="text-xl font-semibold text-gray-100 mb-3">
             Usage Metrics
           </div>
-          <div className="text-base text-gray-600 mb-4 leading-relaxed">
+          <div className="text-base text-gray-400 mb-4 leading-relaxed">
             View your API usage statistics and request counts.
           </div>
           <Link to="/usage">
@@ -62,10 +62,10 @@ export const DashboardPage: React.FC = () => {
         </Card>
 
         <Card hover>
-          <div className="text-xl font-semibold text-gray-900 mb-3">
+          <div className="text-xl font-semibold text-gray-100 mb-3">
             Documentation
           </div>
-          <div className="text-base text-gray-600 mb-4 leading-relaxed">
+          <div className="text-base text-gray-400 mb-4 leading-relaxed">
             Learn how to integrate our API into your applications.
           </div>
           <Link to="/docs">
@@ -78,8 +78,8 @@ export const DashboardPage: React.FC = () => {
         <Card>
           <div className="flex justify-between items-start">
             <div>
-              <div className="text-2xl font-bold text-blue-600">{mockSummaryStats.activeApiKeys}</div>
-              <div className="text-sm text-gray-500 mt-1">Active API Keys</div>
+              <div className="text-2xl font-bold text-warm-400">{mockSummaryStats.activeApiKeys}</div>
+              <div className="text-sm text-gray-400 mt-1">Active API Keys</div>
             </div>
             <MiniChart 
               data={[2, 3, 3, 2, 2, 3, 3]} 
@@ -93,10 +93,10 @@ export const DashboardPage: React.FC = () => {
         <Card>
           <div className="flex justify-between items-start">
             <div>
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-green-400">
                 {todayHourlyData.reduce((a: number, b: number) => a + b, 0).toLocaleString()}
               </div>
-              <div className="text-sm text-gray-500 mt-1">API Requests Today</div>
+              <div className="text-sm text-gray-400 mt-1">API Requests Today</div>
             </div>
             <MiniChart 
               data={todayHourlyData.slice(-8)} 
@@ -110,10 +110,10 @@ export const DashboardPage: React.FC = () => {
         <Card>
           <div className="flex justify-between items-start">
             <div>
-              <div className="text-2xl font-bold text-purple-600">
+              <div className="text-2xl font-bold text-purple-400">
                 {mockSummaryStats.totalRequests.toLocaleString()}
               </div>
-              <div className="text-sm text-gray-500 mt-1">Total Requests</div>
+              <div className="text-sm text-gray-400 mt-1">Total Requests</div>
             </div>
             <MiniChart 
               data={recentDailyData} 

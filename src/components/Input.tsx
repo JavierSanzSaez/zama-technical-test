@@ -24,7 +24,7 @@ export const Input: React.FC<InputProps> = ({
   const labelClasses = [
     'text-sm',
     'font-medium',
-    'text-gray-700',
+    'text-gray-300',
   ].join(' ');
 
   const inputClasses = [
@@ -39,16 +39,19 @@ export const Input: React.FC<InputProps> = ({
     'duration-200',
     'focus:ring-2',
     'focus:ring-offset-2',
+    'bg-dark-800',
+    'text-gray-200',
+    'focus:ring-offset-dark-800',
     error
-      ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500',
+      ? 'border-red-400 focus:border-red-400 focus:ring-red-400'
+      : 'border-dark-600 focus:border-warm-500 focus:ring-warm-500',
     className,
   ]
     .join(' ');
 
   const errorClasses = [
     'text-sm',
-    'text-red-600',
+    'text-red-400',
   ].join(' ');
 
   return (
