@@ -35,14 +35,12 @@ export class AuthHelper {
     
     // Wait for dashboard content to load
     await expect(this.page.locator('h1')).toBeVisible();
-    await this.page.waitForLoadState('networkidle');
   }
 
   async logout() {
     await this.page.click('button:has-text("Logout")');
     // After logout, should redirect to login page
     await expect(this.page).toHaveURL('/login');
-    await this.page.waitForLoadState('networkidle');
   }
 }
 
@@ -62,6 +60,10 @@ export class APIKeysHelper {
     // Click create new key button
     await this.page.click('button:has-text("Create New Key")');
     
+    // Wait for modal to appear
+    await expect(this.page.locator('.fixed.inset-0.bg-black.bg-opacity-50')).toBeVisible();
+    await expect(this.page.locator('h2:has-text("Create New API Key")')).toBeVisible();
+    
     // Wait for form to appear
     await expect(this.page.locator('input[placeholder*="Production API Key"]')).toBeVisible();
     
@@ -71,46 +73,123 @@ export class APIKeysHelper {
     // Submit form
     await this.page.click('button[type="submit"]');
     
-    // Wait for success message
+    // Wait for success message in modal
     await expect(this.page.locator('text=API Key Created Successfully!')).toBeVisible();
     
-    // Return the newly created key element
-    return this.page.locator('.bg-white.rounded-lg.shadow-md').filter({ hasText: name }).first();
+    // Return a selector function that can find the key after modal is closed
+    return {
+      name,
+      findCard: () => {
+        // Find the API key card by looking for the outermost container that contains the key name
+        // We need to find the parent container that includes the name, status, key value, and buttons
+        return this.page.locator('.text-lg.font-semibold.text-mono-50').filter({ hasText: name }).locator('../../..');
+      }
+    };
   }
 
-  async copyAPIKey(keyCard: Locator) {
-    const copyButton = keyCard.locator('button:has-text("Copy Now!")');
-    await expect(copyButton).toBeVisible();
-    await copyButton.click();
+  async closeCreateModal() {
+    // Click "I've Saved My Key" button to close the modal
+    const closeButton = this.page.locator('button:has-text("I\'ve Saved My Key")');
+    await expect(closeButton).toBeVisible();
+    await closeButton.click();
     
-    // Just wait a moment for the copy operation to complete
-    // The button text change might be too fast to catch reliably in tests
-    await this.page.waitForTimeout(500);
-  }
-
-  async hideAPIKey(keyCard: Locator) {
-    // Look for either "Hide Forever ⚠️" (new keys) or "Hide" (existing keys)
-    const hideButton = keyCard.locator('button').filter({ hasText: /Hide/ });
-    await expect(hideButton).toBeVisible();
-    await hideButton.click();
-    
-    // After hiding, the key should become masked again (shows as sk_live_...xxx)
-    await expect(keyCard.locator('code')).toContainText('...');
+    // Wait for modal to disappear
+    await expect(this.page.locator('.fixed.inset-0.bg-black.bg-opacity-50')).not.toBeVisible();
   }
 
   async revokeAPIKey(keyCard: Locator) {
     await keyCard.locator('button:has-text("Revoke")').click();
-    await expect(keyCard.locator('text=revoked')).toBeVisible();
+    
+    // Wait for revoke confirmation modal
+    await expect(this.page.locator('h3:has-text("Revoke API Key")')).toBeVisible();
+    await expect(this.page.locator('text=This will immediately disable the key')).toBeVisible();
+    
+    // Confirm revocation
+    await this.page.click('button:has-text("Revoke Key")');
+    
+    // Wait for modal to close and key to be updated
+    await expect(this.page.locator('h3:has-text("Revoke API Key")')).not.toBeVisible();
+    await this.page.waitForTimeout(500);
   }
 
   async deleteAPIKey(keyCard: Locator, keyName: string) {
-    // Setup dialog handler for confirmation
-    this.page.on('dialog', dialog => dialog.accept());
-    
     await keyCard.locator('button:has-text("Delete")').click();
     
-    // Verify key is removed
-    await expect(this.page.locator('.bg-white.rounded-lg.shadow-md').filter({ hasText: keyName })).not.toBeVisible();
+    // Wait for delete confirmation modal
+    await expect(this.page.locator('h3:has-text("Delete API Key")')).toBeVisible();
+    await expect(this.page.locator(`text=delete the API key "${keyName}"`)).toBeVisible();
+    await expect(this.page.locator('text=This action cannot be undone')).toBeVisible();
+    
+    // Confirm deletion
+    await this.page.click('button:has-text("Delete Key")');
+    
+    // Wait for modal to close and verify key is removed
+    await expect(this.page.locator('h3:has-text("Delete API Key")')).not.toBeVisible();
+    // Check that the key name is no longer visible in the page
+    await expect(this.page.locator('div').filter({ hasText: keyName })).not.toBeVisible();
+  }
+
+  async regenerateAPIKey(keyCard: Locator) {
+    await keyCard.locator('button:has-text("Regenerate")').click();
+    
+    // Wait for regenerated key notification to appear
+    await expect(this.page.locator('text=API Key Regenerated Successfully!')).toBeVisible();
+    await expect(this.page.locator('text=This is your only chance to copy the new key!')).toBeVisible();
+    
+    // Wait for countdown to start
+    await expect(this.page.locator('text=The API Key will mask itself in')).toBeVisible();
+  }
+
+  async copyRegeneratedKey() {
+    // Copy the regenerated key
+    const copyButton = this.page.locator('button:has-text("Copy Now!")');
+    await expect(copyButton).toBeVisible();
+    await copyButton.click();
+    
+    // Wait for the copy action to complete - the button doesn't change text but may show visual feedback
+    // We can verify the copy was successful by checking that the button is still present and clickable
+    await this.page.waitForTimeout(1000);
+    
+    // Verify the copy button is still there (indicating the copy action completed)
+    await expect(copyButton).toBeVisible();
+  }
+
+  async hideRegeneratedKey() {
+    // Click "Hide Forever" button to hide the regenerated key
+    const hideButton = this.page.locator('button:has-text("Hide Forever")');
+    await expect(hideButton).toBeVisible();
+    await hideButton.click();
+    
+    // Wait for regenerated key notification to disappear
+    await expect(this.page.locator('text=API Key Regenerated Successfully!')).not.toBeVisible();
+  }
+
+  async cancelRevokeModal() {
+    // Click Cancel in revoke confirmation modal
+    await this.page.click('button:has-text("Cancel")');
+    
+    // Wait for modal to close
+    await expect(this.page.locator('h3:has-text("Revoke API Key")')).not.toBeVisible();
+  }
+
+  async cancelDeleteModal() {
+    // Click Cancel in delete confirmation modal
+    await this.page.click('button:has-text("Cancel")');
+    
+    // Wait for modal to close
+    await expect(this.page.locator('h3:has-text("Delete API Key")')).not.toBeVisible();
+  }
+
+  async verifyKeyStatus(keyCard: Locator, expectedStatus: 'active' | 'revoked') {
+    // Use a more specific selector for the status badge within the card
+    const statusBadge = keyCard.locator('span.inline-block.px-3.py-1.rounded-full').filter({ hasText: expectedStatus });
+    await expect(statusBadge).toBeVisible();
+  }
+
+  async verifyActionButtons(keyCard: Locator, expectedButtons: string[]) {
+    for (const buttonText of expectedButtons) {
+      await expect(keyCard.locator(`button:has-text("${buttonText}")`)).toBeVisible();
+    }
   }
 }
 

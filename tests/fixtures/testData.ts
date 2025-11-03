@@ -78,8 +78,32 @@ export const testSelectors = {
   createKeyButton: 'button:has-text("Create New Key")',
   keyNameInput: 'input[placeholder*="Production API Key"]',
   copyButton: 'button:has-text("Copy")',
+  copyNowButton: 'button:has-text("Copy Now!")',
   revokeButton: 'button:has-text("Revoke")',
   deleteButton: 'button:has-text("Delete")',
+  regenerateButton: 'button:has-text("Regenerate")',
+  hideForeverButton: 'button:has-text("Hide Forever")',
+  
+  // Modals
+  modalOverlay: '.fixed.inset-0.bg-black.bg-opacity-50',
+  createModal: 'h2:has-text("Create New API Key")',
+  revokeModal: 'h3:has-text("Revoke API Key")',
+  deleteModal: 'h3:has-text("Delete API Key")',
+  modalCloseButton: 'button svg', // X button
+  cancelButton: 'button:has-text("Cancel")',
+  confirmRevokeButton: 'button:has-text("Revoke Key")',
+  confirmDeleteButton: 'button:has-text("Delete Key")',
+  savedKeyButton: 'button:has-text("I\'ve Saved My Key")',
+  
+  // API Key Cards - Look for the generic div containers that hold the keys
+  keyCard: 'div:has(code)',
+  activeStatus: 'text=active',
+  revokedStatus: 'text=revoked',
+  
+  // Regenerated Key Notification
+  regeneratedNotification: 'text=API Key Regenerated Successfully!',
+  countdownText: 'text=The API Key will mask itself in',
+  progressBar: '.bg-blue-400.h-1\\.5.rounded-full',
   
   // Charts and Filters
   chartContainer: '.recharts-wrapper',
@@ -93,8 +117,8 @@ export const testSelectors = {
   halloweenBanner: '[data-testid="halloween-banner"]',
   bannerCloseButton: 'button[aria-label="Close banner"]',
   
-  // Components
-  card: '.bg-white.rounded-lg.shadow-md',
+  // Components - Use generic div for cards since structure changed
+  card: 'div',
   button: 'button',
   input: 'input',
   
@@ -115,11 +139,31 @@ export const testRoutes = {
 export const testMessages = {
   // Success messages
   apiKeyCreated: 'API Key Created Successfully!',
+  apiKeyRegenerated: 'API Key Regenerated Successfully!',
   copied: 'Copied!',
   
   // Warning messages
-  lastChance: 'Last chance to copy',
+  lastChance: 'This is your only chance to copy',
   securityNotice: 'Important Security Notice',
+  countdownWarning: 'The API Key will mask itself in',
+  
+  // Confirmation messages
+  confirmRevoke: 'Are you sure you want to revoke',
+  confirmDelete: 'Are you sure you want to delete',
+  cannotUndo: 'This action cannot be undone',
+  immediateDisable: 'This will immediately disable the key',
+  
+  // Modal titles
+  createKeyModal: 'Create New API Key',
+  revokeKeyModal: 'Revoke API Key',
+  deleteKeyModal: 'Delete API Key',
+  
+  // Button text
+  saveKey: 'I\'ve Saved My Key',
+  hideForever: 'Hide Forever',
+  copyNow: 'Copy Now!',
+  revokeKey: 'Revoke Key',
+  deleteKey: 'Delete Key',
   
   // Error messages
   loginFailed: 'Invalid credentials',
