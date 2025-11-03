@@ -391,4 +391,35 @@ test.describe('Complete User Workflows', () => {
     await page.waitForTimeout(1000);
     await chartHelper.verifyChartsVisible();
   });
+
+  test('404 Not Found page workflow', async ({ page }) => {
+    // Navigate to a non-existent page while not authenticated
+    await page.goto('/this-page-does-not-exist');
+    
+    // Should automatically redirect to login page (not show 404)
+    await expect(page).toHaveURL('/login');
+    await expect(page.locator('input[type="email"]')).toBeVisible();
+    
+    // Log in first
+    await authHelper.login(mockUser.email);
+    await expect(page).toHaveURL('/dashboard');
+    
+    // Now test navigation to a non-existent page while authenticated
+    await page.goto('/another-non-existent-page');
+    
+    // Should show 404 page (since user is now authenticated)
+    await expect(page.locator('h1:has-text("404")')).toBeVisible();
+    await expect(page.locator('h2:has-text("Page Not Found")')).toBeVisible();
+    await expect(page.locator('text=Sorry, the page you are looking for doesn\'t exist')).toBeVisible();
+    
+    // Should have a button to go to dashboard
+    const dashboardButton = page.locator('button:has-text("Go to Dashboard")');
+    await expect(dashboardButton).toBeVisible();
+    await expect(dashboardButton).toBeEnabled();
+    
+    // Click dashboard button (should work directly since authenticated)
+    await dashboardButton.click();
+    await expect(page).toHaveURL('/dashboard');
+
+  });
 });

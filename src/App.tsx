@@ -9,6 +9,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { APIKeysPage } from './pages/APIKeysPage';
 import { UsagePage } from './pages/UsagePage';
 import { DocsPage } from './pages/DocsPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
             <Route path="usage" element={<UsagePage />} />
             <Route path="docs" element={<DocsPage />} />
           </Route>
+          {/* Catch-all route for 404 pages */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
       </AuthProvider>
